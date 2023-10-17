@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>随机数 xwy 2060403379</title>
+</head>
+<body>
+  <label for="min">最小值：</label>
+  <input type="number" id="min" name="min">
+  <br>
+  <label for="max">最大值：</label>
+  <input type="number" id="max" name="max">
+  <br>
+  <label for="num">循环次数：</label>
+  <input type="number" id="num" name="num">
+  <br>
+  <button onclick="generateRandomNumbers()">生成随机数</button>
+  <br>
+  <pre id="output"></pre>
+
+  <script>
+    function generateRandomNumbers() {
+      var min = document.getElementById("min").value;
+      var max = document.getElementById("max").value;
+      var num = document.getElementById("num").value;
+      var all_num = [];
+      if(Number(max) < Number(min)){
+        console.log("最大值怎么可能小于最小值");
+        document.getElementById("output").innerText += "最大值怎么可能小于最小值";
+      }else{
+        if(Number(num) > (Number(max) - Number(min) + 1) ){
+          console.log("输入循环次数过大，请重新输入");
+          document.getElementById("output").innerText += "输入循环次数过大，请重新输入";
+        }else{
+
+          for (var i = 0; i < num; i++) {
+          var a = Math.floor(Math.random() * parseInt(max)) + parseInt(min);
+
+          if (all_num.includes(a)) {
+            while (all_num.includes(a)) {
+              a = Math.floor(Math.random() * parseInt(max)) + parseInt(min);
+            }
+          }
+
+          all_num.push(a);
+          document.getElementById("output").innerText += a + "\n";
+          console.log(a);
+          }
+        }
+      }
+   }
+  </script>
+</body>
+</html>
